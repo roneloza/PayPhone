@@ -10,33 +10,44 @@ import SwiftUI
 struct ContentView: View {
   
   @ObservedObject var viewModel = UserViewModel()
+  @State var showAddView = false
   
   var body: some View {
     NavigationView {
       VStack {
         List {
           ForEach(self.viewModel.users) { user in
-            UserListItemView(user: user)
+            UserListItemView(user: user, interactor: self.viewModel.interactor)
           }
         }
       }
       .navigationTitle("UserListTitle")
-    }
-    .onAppear {
-      Task {
-        await self.viewModel.interactor?.getUsers()
+      .toolbar {
+        ToolbarItem(placement: .navigationBarTrailing) {
+          Button("Add", action: { showAddView = true })
+            .fullScreenCover(isPresented: $showAddView, content: {
+              UserCreateView(
+                interactor: self.viewModel.interactor,
+                showAddView: self.$showAddView) })
+        }
       }
-    }
-    .alert(self.viewModel.errorMessage,
-           isPresented: self.$viewModel.showingAlert) {
-      Button("OK", role: .cancel) { }
+      .task {
+        await self.viewModel.interactor?.deleteAll()
+        await self.viewModel.interactor?.loadExternalUsers()
+      }
+      .alert(self.viewModel.errorMessage,
+             isPresented: self.$viewModel.showingAlert) {
+        Button("OK", role: .cancel) { }
+      }
     }
   }
   
   init() {
     let presenter: UserInteractorOutput = UserPresenter(viewModel: self.viewModel)
-    let interactor: UserInteractorInput = UserInteractor(output: presenter,
-                                                         dataManager: UserDataManager(dataManager: NetworkDataManager()))
+    let interactor: UserInteractorInput = UserInteractor(
+      output: presenter,
+      dataManager: UserDataManager(apiDataManager: NetworkDataManager(),
+                                   localDataManager: UserRealmDataManager()))
     self.viewModel.interactor = interactor
   }
 }
@@ -48,9 +59,11 @@ struct ContentView: View {
 struct UserListItemView: View {
   
   let user: UserListItem
+  let interactor: UserInteractorInput?
   
   var body: some View {
-    NavigationLink(destination: UserDetailView(user: user)) {
+    NavigationLink(destination: UserDetailView(user: user,
+                                               interactor: self.interactor)) {
       HStack {
         Image(user.imagen)
           .resizable()

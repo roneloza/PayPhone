@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		394A4ED62D989F29005B008C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 394A4ED52D989F29005B008C /* RealmSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		394A4EA02D983E1A005B008C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				394A4ED62D989F29005B008C /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = PayPhone;
 			packageProductDependencies = (
+				394A4ED52D989F29005B008C /* RealmSwift */,
 			);
 			productName = PayPhone;
 			productReference = 394A4E8F2D983E19005B008C /* PayPhone.app */;
@@ -187,14 +193,18 @@
 				};
 			};
 			buildConfigurationList = 394A4E8A2D983E18005B008C /* Build configuration list for PBXProject "PayPhone" */;
-			developmentRegion = en;
+			developmentRegion = es;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 				Base,
 			);
 			mainGroup = 394A4E862D983E18005B008C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				394A4ED22D989F29005B008C /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 394A4E902D983E19005B008C /* Products */;
 			projectDirPath = "";
@@ -328,6 +338,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -384,6 +395,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -552,6 +564,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		394A4ED22D989F29005B008C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		394A4ED52D989F29005B008C /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 394A4ED22D989F29005B008C /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 394A4E872D983E18005B008C /* Project object */;
 }

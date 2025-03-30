@@ -15,17 +15,17 @@ class UserPresenter: UserInteractorOutput {
     self.viewModel = viewModel
   }
   
-  @MainActor func setUsers(users: [UserResponse]) {
+  @MainActor func setUsers(users: [UserModel]) {
     self.viewModel?.setUsers(users: self.formatUsers(users: users))
   }
   
-  private func formatUsers(users: [UserResponse]) -> [UserListItem] {
+  private func formatUsers(users: [UserModel]) -> [UserListItem] {
     return users.compactMap { UserListItem(id: $0.id,
                                            name: $0.userName,
                                            fullName: $0.name,
                                            phone: $0.phone,
                                            email: $0.email,
-                                           address: $0.address.street + " " + $0.address.suite + ", " + $0.address.city,
+                                           address: $0.address,
                                            imagen: "avatar") }
   }
   
@@ -45,7 +45,7 @@ protocol UserPresenterInput: AnyObject {
 
 struct UserListItem: Identifiable {
   
-  let id: Int
+  let id: String
   let name: String
   let fullName: String
   let phone: String

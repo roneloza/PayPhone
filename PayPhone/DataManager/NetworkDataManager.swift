@@ -16,7 +16,7 @@ enum NetworkDataManagerError: Error {
 
 struct NetworkDataManager: DataManagerProtocol {
   
-  func fetch<T: Codable>(request: DataManagerRequest, type: T.Type) async throws -> T {
+  func fetch<T: Codable>(request: DataManagerRequestProtocol, type: T.Type) async throws -> T {
     var urlComponents = URLComponents()
     urlComponents.host = request.host
     urlComponents.scheme = request.scheme
@@ -39,5 +39,8 @@ struct NetworkDataManager: DataManagerProtocol {
     return fetchedData
   }
   
+  func update(request: DataManagerRequestProtocol) async throws {}
+  func insert(request: DataManagerRequestProtocol) async throws {}
+  func deleteAll() async throws {}
 }
 

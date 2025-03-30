@@ -18,7 +18,7 @@ protocol DataManagerRequestProtocol {
   var method: String { get }
 }
 
-struct DataManagerRequest: DataManagerProtocol {
+struct DataManagerRequest: DataManagerRequestProtocol {
   
   let scheme: String
   let host: String
@@ -29,8 +29,8 @@ struct DataManagerRequest: DataManagerProtocol {
   let jsonBody: [String : String]
   
   internal init(scheme: String = "https",
-                host: String,
-                path: String,
+                host: String = "",
+                path: String = "",
                 method: String = "GET",
                 query: [String : String] = [:],
                 headers: [String : String] = [:],

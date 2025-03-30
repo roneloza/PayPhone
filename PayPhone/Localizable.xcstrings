@@ -1,7 +1,56 @@
 {
-  "sourceLanguage" : "en",
+  "sourceLanguage" : "es",
   "strings" : {
+    "Add" : {
 
+    },
+    "Cerrar" : {
+
+    },
+    "Dirección:" : {
+
+    },
+    "Email" : {
+
+    },
+    "Email:" : {
+
+    },
+    "Guardar" : {
+
+    },
+    "Nombre" : {
+
+    },
+    "Nombre:" : {
+
+    },
+    "OK" : {
+
+    },
+    "Telefono" : {
+
+    },
+    "Telefono:" : {
+
+    },
+    "UserListTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "User List"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Lista de Usuarios"
+          }
+        }
+      }
+    }
   },
   "version" : "1.0"
 }

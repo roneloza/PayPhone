@@ -9,6 +9,9 @@ import Foundation
 
 protocol DataManagerProtocol {
   
-  func fetch<T: Codable>(request: DataManagerRequest, type: T.Type) async throws -> T
+  func fetch<T: Codable>(request: DataManagerRequestProtocol, type: T.Type) async throws -> T
+  func update(request: DataManagerRequestProtocol) async throws
+  func insert(request: DataManagerRequestProtocol) async throws
+  func deleteAll() async throws
 }
 
